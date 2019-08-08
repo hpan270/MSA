@@ -15,6 +15,7 @@ https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py
 - the classification report: precision, recall, f1, support score
 - plot the confusion matrix
 
+
 3. The result:
-- 4 Conv2D layers, 100 epochs: score 78
+- 4 Conv2D layers, stacked, 100 epochs: score 78
 - 4 Conv2D layers, stacked, data augment, 32 epochs: score 84
