@@ -19,3 +19,5 @@ https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py
 3. The result:
 - 4 Conv2D layers, stacked, 100 epochs: score 78
 - 4 Conv2D layers, stacked, data augment, 32 epochs: score 84
+![Performance](CNN_Results/acc_loss.png)
+![conf_matrix](CNN_Results/confusion_matrix.png)
