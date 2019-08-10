@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CIFAR10 API Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body style="width:100%; margin: auto;">
+<h1 align="center" style="background-color:powderblue;">Test CNN Classification Trained on CIFAR10 Data Set</h1>
+
+<h3 align="center" style="color:#0088cc;">Click Any Picture to See What it is Predicted by CNN Model</h3>
+<div class="container">
+<table>
+<tr>
+<td valign="top">
+  <h2 align="center">cat1</h2>       
+  <img src="cat1.jpeg" class="img-thumbnail" alt="" width="350" height="320" onclick="myAPI('cat1')"> 
+  <h4 align="center" id='rslt_cat1'><h4>
+</td>
+<td>  
+  <h2>cat2</h2>       
+  <img src="cat2.jpeg" class="img-thumbnail" alt="" width="350" height="320" onclick="test()"> 
+  <p>1: dog<br/>2: horse<p> 
+</td>   
+<td>  
+  <h2>dog1</h2>       
+  <img src="dog1.jpeg" class="img-thumbnail" alt="" width="350" height="320"> 
+  <p>1: dog<br/>2: horse<p> 
+</td>  
+<td>  
+  <h2>dog2</h2>       
+  <img src="dog2.jpeg" class="img-thumbnail" alt="" width="350" height="320"> 
+  <p>1: dog<br/>2: horse<p> 
+</td>  
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+</div>
+<div id='root'></div>
+</body>
+<script type="text/javascript">
+function myAPI(txt){
+// 	alert(txt);
+	eName="rslt_" + txt;
+	document.getElementById(eName).innerHTML="1: " + txt + "</br>" + "2: " + txt;
+    
+    var apiUrl = 'http://search.twitter.com/search.json?q=jQuery&result_type=recent&rpp=3';
+    alert(1);
+//     fetch(apiUrl).then(response => {
+//       return response.json();
+//     }).then(data => {
+//       // Work with JSON data here
+// //       console.log(data);
+//       alert("hidd");	
+//       alert(data);
+//     }).catch(err => {
+//       // Do something for an error here
+//       alert("error");
+//     })
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert(this.responseText);
+                }
+            };
+            xhttp.open("GET", apiUrl, true);
+            xhttp.send();
+    }
+    
+function test(){
+	alert('in test func');
+	const app = document.getElementById('root');
+	var request = new XMLHttpRequest();
+	request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+	request.onload = function () {
+	
+  // Begin accessing JSON data here
+  var data = JSON.parse(this.response);
+  if (request.status >= 200 && request.status < 400) {
+	app.innerHTML(data);
+  } else {
+    const errorMessage = document.createElement('marquee');
+    errorMessage.textContent = `Gah, it's not working!`;
+    app.innerHTML(errorMessage);
+  }
+}
+
+	request.send();
+}    
+</script>
+
+</html>
